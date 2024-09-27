@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom'; // Import useLocation dari react-router-dom
+import { Link, useLocation } from 'react-router-dom';
 import comp_logo from '../Assets/comp_logo.png';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  const location = useLocation(); // Mendapatkan lokasi saat ini
+  const location = useLocation();
 
   return (
     <aside
