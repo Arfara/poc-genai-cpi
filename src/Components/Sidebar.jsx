@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { FiHome, FiCpu } from 'react-icons/fi';
+import { AiOutlineBarChart } from 'react-icons/ai';
 import comp_logo from '../Assets/comp_logo.png';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
@@ -16,30 +18,33 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <li className="mb-3">
           <Link
             to="/home"
-            className={`block p-2 rounded text-white transition duration-300 ease-in-out ${
-              location.pathname === '/home' ? 'bg-blue-400' : 'text-black'
+            className={`flex items-center p-2 rounded transition-all duration-300 ease-in-out ${
+              location.pathname === '/home' ? 'bg-blue-400 text-white' : 'text-black hover:bg-blue-300 hover:text-white'
             }`}
           >
+            <FiHome className="mr-2" />
             Home
           </Link>
         </li>
         <li className="mb-3">
           <Link
             to="/chatbot"
-            className={`block p-2 rounded text-white transition duration-300 ease-in-out ${
-              location.pathname === '/chatbot' ? 'bg-blue-400' : 'text-black'
+            className={`flex items-center p-2 rounded transition-all duration-300 ease-in-out ${
+              location.pathname === '/chatbot' ? 'bg-blue-400 text-white' : 'text-black hover:bg-blue-300 hover:text-white'
             }`}
           >
+            <FiCpu className="mr-2" />
             Generative AI
           </Link>
         </li>
         <li className="mb-3">
           <Link
             to="/smart-analytics"
-            className={`block p-2 rounded text-white transition duration-300 ease-in-out ${
-              location.pathname === '/smart-analytics' ? 'bg-blue-400' : 'text-black'
+            className={`flex items-center p-2 rounded transition-all duration-300 ease-in-out ${
+              location.pathname === '/smart-analytics' ? 'bg-blue-400 text-white' : 'text-black hover:bg-blue-300 hover:text-white'
             }`}
           >
+            <AiOutlineBarChart className="mr-2" />
             Smart Analytics
           </Link>
         </li>

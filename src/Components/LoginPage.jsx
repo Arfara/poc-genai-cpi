@@ -19,18 +19,18 @@ const LoginPage = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
-      >
-      </div>
-
+      />
+      
+      {/* Main login container */}
       <div
-        className="flex w-full md:w-1/2 items-center justify-center"
+        className="flex w-full md:w-1/2 items-center justify-center p-4"
         style={{ background: 'linear-gradient(to right, #d4e4ff 0%, #ffff 50%)' }}
       >
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-          <div className="flex justify-center items-center">
-            <img src={comp_logo} className="w-20 h-20" alt="Company Logo" />
+          <div className="flex justify-center items-center mb-4">
+            <img src={comp_logo} className="w-24 h-24 md:w-20 md:h-20" alt="Company Logo" />
           </div>
-          <p className="text-center text-gray-600 mb-6 mt-6">Charoen Pokphand Generative AI</p>
+          <p className="text-center text-gray-600 mb-6 mt-6 text-lg">Charoen Pokphand Generative AI</p>
           <form>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
