@@ -10,6 +10,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }) => {
   const handleMenuToggle = () => setMenuOpen(!menuOpen);
 
   const handleLogout = () => {
+    localStorage.removeItem('token');
     navigate('/login');
   };
 
