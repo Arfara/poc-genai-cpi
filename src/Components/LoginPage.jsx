@@ -23,7 +23,7 @@ const LoginPage = () => {
     requestData.append('client_secret', '');
 
     try {
-      const response = await fetch('http://10.7.90.47:8000/token', {
+      const response = await fetch('http://localhost:8000/token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -37,8 +37,8 @@ const LoginPage = () => {
         const data = await response.json();
         console.log('Login successful, received token:', data.access_token);
         
-        localStorage.setItem('access_token', data.access_token);
-        navigate('/chatbot');
+        localStorage.setItem('access_token', data.access_token); 
+        navigate('/chatbot'); 
       } else {
         const errorData = await response.json();
         console.log('Login failed, error:', errorData);
