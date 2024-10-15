@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FiHome, FiCpu } from 'react-icons/fi';
 import { AiOutlineBarChart } from 'react-icons/ai';
+import { LuBrainCircuit } from "react-icons/lu";
 import comp_logo from '../Assets/comp_logo.png';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
@@ -46,6 +47,17 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           >
             <AiOutlineBarChart className="mr-2" />
             Smart Analytics
+          </Link>
+        </li>
+        <li className="mb-3">
+          <Link
+            to="/knowledge-management"
+            className={`flex items-center p-2 rounded transition-all duration-300 ease-in-out ${
+              location.pathname === '/knowledge-management' ? 'bg-blue-400 text-white' : 'text-black hover:bg-blue-300 hover:text-white'
+            }`}
+          >
+            <LuBrainCircuit className="mr-2" />
+            Knowledge Management
           </Link>
         </li>
       </ul>

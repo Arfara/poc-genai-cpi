@@ -4,6 +4,7 @@ import LoginPage from './Components/LoginPage';
 import Chatbot from './Components/Chatbot';
 import SmartAnalytics from './Components/SmartAnalytics';
 import Home from './Components/Home';
+import KnowledgeManagement from './Components/KnowledgeManagement';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/smart-analytics" element={<SmartAnalytics />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/knowledge-management" element={<KnowledgeManagement />} />
       </Routes>
     </Router>
   );
