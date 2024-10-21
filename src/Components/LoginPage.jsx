@@ -23,7 +23,7 @@ const LoginPage = () => {
     requestData.append('client_secret', '');
 
     try {
-      const response = await fetch('http://localhost:8000/token', {
+      const response = await fetch('http://localhost:8000/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',

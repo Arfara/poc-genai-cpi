@@ -61,7 +61,7 @@ const Chatbot = () => {
       return;
     }
 
-    fetch(`http://localhost:8000/verify-token/${token}`)
+    fetch(`http://localhost:8000/user/verify-token/${token}`)
       .then(response => {
         if (!response.ok) {
           localStorage.removeItem('access_token');
