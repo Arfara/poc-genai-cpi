@@ -103,27 +103,27 @@ const Chatbot = () => {
           <div className="flex flex-col h-full bg-white rounded-3xl shadow-xl p-6">
             <div className="flex-1 overflow-y-auto mb-4 space-y-4">
               <div className="flex flex-col space-y-4">
-                {messages.map((message, index) => (
-                  <div key={index} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`p-4 rounded-3xl max-w-xs text-sm shadow-md ${message.sender === 'user' ? 'bg-blue-500 text-white rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'}`}>
-                      {message.sender === 'user' ? (
-                        message.text
-                      ) : (
-                        <ReactMarkdown>{message.text}</ReactMarkdown>
-                      )}
+                  {messages.map((message, index) => (
+                    <div key={index} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`p-4 rounded-3xl text-sm shadow-md ${message.sender === 'user' ? 'bg-blue-500 text-white rounded-br-none max-w-[50%]' : 'bg-gray-200 text-gray-800 rounded-bl-none max-w-[70%]'}`}>
+                        {message.sender === 'user' ? (
+                          message.text
+                        ) : (
+                          <ReactMarkdown>{message.text}</ReactMarkdown>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
-                {isLoading && (
-                  <div className="flex justify-start">
-                    <div className="p-4 rounded-3xl max-w-xs text-sm shadow-md bg-gray-200 text-gray-800 rounded-bl-none">
-                      <div className="animate-pulse">Loading response...</div>
+                  ))}
+                  {isLoading && (
+                    <div className="flex justify-start">
+                      <div className="p-4 rounded-3xl max-w-xs text-sm shadow-md bg-gray-200 text-gray-800 rounded-bl-none">
+                        <div className="animate-pulse">Loading response...</div>
+                      </div>
                     </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
               </div>
-            </div>
 
             <div className="flex items-center space-x-3 p-2 rounded-full">
               <input
