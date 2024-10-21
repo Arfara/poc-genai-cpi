@@ -20,7 +20,7 @@ const KnowledgeManagement = () => {
       return;
     }
 
-    fetch(`http://localhost:8000/user/verify-token/${token}`)
+    fetch(`http://10.1.3.28:8000/user/verify-token/${token}`)
       .then(response => {
         if (!response.ok) {
           localStorage.removeItem('access_token');

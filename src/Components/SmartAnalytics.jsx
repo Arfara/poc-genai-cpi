@@ -29,7 +29,7 @@ const SmartAnalytics = () => {
       setInput('');
 
       try {
-        const response = await fetch('http://localhost:8000/chat/smartanalytics', {
+        const response = await fetch('http://10.1.3.28:8000/chat/smartanalytics', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -82,7 +82,7 @@ const SmartAnalytics = () => {
       return;
     }
 
-    fetch(`http://localhost:8000/user/verify-token/${token}`)
+    fetch(`http://10.1.3.28:8000/user/verify-token/${token}`)
       .then(response => {
         if (!response.ok) {
           localStorage.removeItem('access_token');

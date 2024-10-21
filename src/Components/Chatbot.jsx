@@ -25,7 +25,7 @@ const Chatbot = () => {
       setIsLoading(true);
 
       try {
-        const response = await fetch('http://localhost:8000/chat/smartassistant', {
+        const response = await fetch('http://10.1.3.28:8000/chat/smartassistant', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const Chatbot = () => {
       return;
     }
 
-    fetch(`http://localhost:8000/user/verify-token/${token}`)
+    fetch(`http://10.1.3.28:8000/user/verify-token/${token}`)
       .then(response => {
         if (!response.ok) {
           localStorage.removeItem('access_token');
