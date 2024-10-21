@@ -3,13 +3,15 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import { IoSend } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 const Chatbot = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-  const [chatId, setChatId] = useState('1');
+  const [chatId, setChatId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
 
@@ -18,19 +20,21 @@ const Chatbot = () => {
   const handleSendMessage = async () => {
     const token = localStorage.getItem('access_token');
     if (input.trim() && token) {
-      setMessages([...messages, { text: input, sender: 'user' }]);
+      setMessages(prevMessages => [...prevMessages, { text: input, sender: 'user' }]);
+      setInput('');
+      setIsLoading(true);
 
       try {
         const response = await fetch('http://localhost:8000/chat/smartassistant', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
             token: token,
             user_message: input,
-            chat_id: chatId,
+            chat_id: chatId || null,
           }),
         });
 
@@ -41,16 +45,15 @@ const Chatbot = () => {
         const data = await response.json();
         setMessages(prevMessages => [
           ...prevMessages,
-          { text: data.respond_message, sender: 'bot' },
+          { text: data.response_message, sender: 'bot' },
         ]);
 
-        setChatId(data.chat_id);
-
+        setChatId(data.chat_id); 
       } catch (error) {
         console.error('Error sending message:', error);
+      } finally {
+        setIsLoading(false);
       }
-
-      setInput('');
     }
   };
 
@@ -84,6 +87,11 @@ const Chatbot = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, navigate]);
 
+  useEffect(() => {
+    setChatId(null);
+    setMessages([]);
+  }, []);
+
   return (
     <div className="flex h-screen bg-gradient-to-r from-blue-50 to-blue-100">
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
@@ -98,10 +106,21 @@ const Chatbot = () => {
                 {messages.map((message, index) => (
                   <div key={index} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <div className={`p-4 rounded-3xl max-w-xs text-sm shadow-md ${message.sender === 'user' ? 'bg-blue-500 text-white rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'}`}>
-                      {message.text}
+                      {message.sender === 'user' ? (
+                        message.text
+                      ) : (
+                        <ReactMarkdown>{message.text}</ReactMarkdown>
+                      )}
                     </div>
                   </div>
                 ))}
+                {isLoading && (
+                  <div className="flex justify-start">
+                    <div className="p-4 rounded-3xl max-w-xs text-sm shadow-md bg-gray-200 text-gray-800 rounded-bl-none">
+                      <div className="animate-pulse">Loading response...</div>
+                    </div>
+                  </div>
+                )}
                 <div ref={messagesEndRef} />
               </div>
             </div>
@@ -114,10 +133,12 @@ const Chatbot = () => {
                 placeholder="Type a prompt..."
                 className="flex-1 min-w-0 p-3 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm transition-all"
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                disabled={isLoading}
               />
               <button
                 onClick={handleSendMessage}
                 className="bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105"
+                disabled={isLoading} 
               >
                 <IoSend size={24} />
               </button>

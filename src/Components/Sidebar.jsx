@@ -61,6 +61,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           </Link>
         </li>
       </ul>
+
+      {/* Copyright Section */}
+      <div className="absolute bottom-8 p-4 left-0 right-0 text-center text-gray-500 text-sm">
+        &copy; 2024 PT Smartnet Magna Global. All rights reserved.
+      </div>
     </aside>
   );
 };

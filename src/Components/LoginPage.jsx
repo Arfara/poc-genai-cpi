@@ -132,6 +132,11 @@ const LoginPage = () => {
               </a>
             </div>
           </form>
+
+          {/* Copyright Section */}
+          <div className="mt-6 text-center text-gray-500 text-sm">
+            &copy; 2024 PT Smartnet Magna Global. All rights reserved.
+          </div>
         </div>
       </div>
 
