@@ -4,10 +4,11 @@ import Sidebar from './Sidebar';
 import { IoSend } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const Chatbot = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = React.useState([]);
   const [input, setInput] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [chatId, setChatId] = useState(null);
@@ -106,11 +107,11 @@ const Chatbot = () => {
                   {messages.map((message, index) => (
                     <div key={index} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                       <div className={`p-4 rounded-3xl text-sm shadow-md ${message.sender === 'user' ? 'bg-blue-500 text-white rounded-br-none max-w-[50%]' : 'bg-gray-200 text-gray-800 rounded-bl-none max-w-[70%]'}`}>
-                        {message.sender === 'user' ? (
-                          message.text
-                        ) : (
-                          <ReactMarkdown>{message.text}</ReactMarkdown>
-                        )}
+                      {message.sender === 'user' ? (
+                        message.text
+                      ) : (
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.text}</ReactMarkdown>
+                      )}
                       </div>
                     </div>
                   ))}

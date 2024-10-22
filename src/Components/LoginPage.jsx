@@ -121,8 +121,9 @@ const LoginPage = () => {
 
   return (
     <div className="flex h-screen">
-      <div
-        className="hidden md:block w-1/2 bg-cover bg-center"
+
+      {/* Background Image Section */}
+      <div className="hidden md:block w-1/2 bg-cover bg-center"
         style={{
           backgroundImage: `url(${bg_image})`,
           backgroundSize: 'cover',
@@ -130,6 +131,7 @@ const LoginPage = () => {
         }}
       />
 
+      {/* Login and Register Container */}
       <div
         className="flex w-full md:w-1/2 items-center justify-center p-4"
         style={{ background: 'linear-gradient(to right, #d4e4ff 0%, #ffff 50%)' }}
@@ -191,7 +193,8 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-
+      
+      {/* Error Login Modal */}
       {showErrorModal && (
         <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity ease-out duration-500">
           <div
@@ -213,6 +216,7 @@ const LoginPage = () => {
         </div>
       )}
 
+      {/* Register Modal */}
       {showRegisterModal && (
         <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity ease-out duration-500">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
@@ -274,6 +278,7 @@ const LoginPage = () => {
         </div>
       )}
 
+      {/* Success Register Modal */}
       {showSuccessModal && (
         <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity ease-out duration-500">
           <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
